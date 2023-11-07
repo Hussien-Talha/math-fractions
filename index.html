@@ -1,0 +1,159 @@
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fraction {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 10px;
+        }
+
+        .fraction span {
+            display: block;
+            text-align: center;
+        }
+
+        .fraction span.top {
+            border-bottom: 1px solid black;
+        }
+
+        .fraction span.bottom {
+            border-top: 1px solid black;
+        }
+
+        .operator {
+            font-size: 24px;
+            margin: 10px;
+        }
+
+        .result {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #3E8E41;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fraction Calculator</h1>
+    <div class="container">
+        <div class="fraction">
+            <span class="top" id="num1">1</span>
+            <span class="bottom" id="den1">2</span>
+        </div>
+        <div class="operator" id="op">+</div>
+        <div class="fraction">
+            <span class="top" id="num2">1</span>
+            <span class="bottom" id="den2">4</span>
+        </div>
+        <div class="operator">=</div>
+        <div class="result" id="result">3/4</div>
+    </div>
+    <div class="container">
+        <button class="button" onclick="add()">Add</button>
+        <button class="button" onclick="subtract()">Subtract</button>
+        <button class="button" onclick="multiply()">Multiply</button>
+        <button class="button" onclick="divide()">Divide</button>
+    </div>
+    <script>
+        // Get the elements from the document
+        var num1 = document.getElementById("num1");
+        var den1 = document.getElementById("den1");
+        var num2 = document.getElementById("num2");
+        var den2 = document.getElementById("den2");
+        var op = document.getElementById("op");
+        var result = document.getElementById("result");
+
+        // Define the functions for each operation
+        function add() {
+            // Set the operator to +
+            op.innerHTML = "+";
+            // Calculate the numerator and denominator of the sum
+            var sumNum = parseInt(num1.innerHTML) * parseInt(den2.innerHTML) + parseInt(num2.innerHTML) * parseInt(den1.innerHTML);
+            var sumDen = parseInt(den1.innerHTML) * parseInt(den2.innerHTML);
+            // Simplify the fraction if possible
+            var gcd = getGCD(sumNum, sumDen);
+            sumNum /= gcd;
+            sumDen /= gcd;
+            // Display the result
+            result.innerHTML = sumNum + "/" + sumDen;
+        }
+
+        function subtract() {
+            // Set the operator to -
+            op.innerHTML = "-";
+            // Calculate the numerator and denominator of the difference
+            var diffNum = parseInt(num1.innerHTML) * parseInt(den2.innerHTML) - parseInt(num2.innerHTML) * parseInt(den1.innerHTML);
+            var diffDen = parseInt(den1.innerHTML) * parseInt(den2.innerHTML);
+            // Simplify the fraction if possible
+            var gcd = getGCD(diffNum, diffDen);
+            diffNum /= gcd;
+            diffDen /= gcd;
+            // Display the result
+            result.innerHTML = diffNum + "/" + diffDen;
+        }
+
+        function multiply() {
+            // Set the operator to *
+            op.innerHTML = "*";
+            // Calculate the numerator and denominator of the product
+            var prodNum = parseInt(num1.innerHTML) * parseInt(num2.innerHTML);
+            var prodDen = parseInt(den1.innerHTML) * parseInt(den2.innerHTML);
+            // Simplify the fraction if possible
+            var gcd = getGCD(prodNum, prodDen);
+            prodNum /= gcd;
+            prodDen /= gcd;
+            // Display the result
+            result.innerHTML = prodNum + "/" + prodDen;
+        }
+
+        function divide() {
+            // Set the operator to /
+            op.innerHTML = "/";
+            // Calculate the numerator and denominator of the quotient
+            var quotNum = parseInt(num1.innerHTML) * parseInt(den2.innerHTML);
+            var quotDen = parseInt(den1.innerHTML) * parseInt(num2.innerHTML);
+            // Simplify the fraction if possible
+            var gcd = getGCD(quotNum, quotDen);
+            quotNum /= gcd;
+            quotDen /= gcd;
+            // Display the result
+            result.innerHTML = quotNum + "/" + quotDen;
+        }
+
+        // Define a function to get the greatest common divisor of two numbers
+        function getGCD(a, b) {
+            if (b == 0) {
+                return a;
+            }
+            return getGCD(b, a % b);
+        }
+    </script>
+</body>
+</html>
