@@ -58,19 +58,26 @@
         .button:hover {
             background-color: #3E8E41;
         }
+
+        .input {
+            width: 50px;
+            height: 30px;
+            font-size: 18px;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <h1>Fraction Calculator</h1>
     <div class="container">
         <div class="fraction">
-            <span class="top" id="num1">1</span>
-            <span class="bottom" id="den1">2</span>
+            <input class="input" id="num1" value="1">
+            <span class="bottom"><input class="input" id="den1" value="2"></span>
         </div>
         <div class="operator" id="op">+</div>
         <div class="fraction">
-            <span class="top" id="num2">1</span>
-            <span class="bottom" id="den2">4</span>
+            <input class="input" id="num2" value="1">
+            <span class="bottom"><input class="input" id="den2" value="4"></span>
         </div>
         <div class="operator">=</div>
         <div class="result" id="result">3/4</div>
@@ -95,8 +102,8 @@
             // Set the operator to +
             op.innerHTML = "+";
             // Calculate the numerator and denominator of the sum
-            var sumNum = parseInt(num1.innerHTML) * parseInt(den2.innerHTML) + parseInt(num2.innerHTML) * parseInt(den1.innerHTML);
-            var sumDen = parseInt(den1.innerHTML) * parseInt(den2.innerHTML);
+            var sumNum = parseInt(num1.value) * parseInt(den2.value) + parseInt(num2.value) * parseInt(den1.value);
+            var sumDen = parseInt(den1.value) * parseInt(den2.value);
             // Simplify the fraction if possible
             var gcd = getGCD(sumNum, sumDen);
             sumNum /= gcd;
@@ -109,8 +116,8 @@
             // Set the operator to -
             op.innerHTML = "-";
             // Calculate the numerator and denominator of the difference
-            var diffNum = parseInt(num1.innerHTML) * parseInt(den2.innerHTML) - parseInt(num2.innerHTML) * parseInt(den1.innerHTML);
-            var diffDen = parseInt(den1.innerHTML) * parseInt(den2.innerHTML);
+            var diffNum = parseInt(num1.value) * parseInt(den2.value) - parseInt(num2.value) * parseInt(den1.value);
+            var diffDen = parseInt(den1.value) * parseInt(den2.value);
             // Simplify the fraction if possible
             var gcd = getGCD(diffNum, diffDen);
             diffNum /= gcd;
@@ -123,8 +130,8 @@
             // Set the operator to *
             op.innerHTML = "*";
             // Calculate the numerator and denominator of the product
-            var prodNum = parseInt(num1.innerHTML) * parseInt(num2.innerHTML);
-            var prodDen = parseInt(den1.innerHTML) * parseInt(den2.innerHTML);
+            var prodNum = parseInt(num1.value) * parseInt(num2.value);
+            var prodDen = parseInt(den1.value) * parseInt(den2.value);
             // Simplify the fraction if possible
             var gcd = getGCD(prodNum, prodDen);
             prodNum /= gcd;
@@ -137,8 +144,8 @@
             // Set the operator to /
             op.innerHTML = "/";
             // Calculate the numerator and denominator of the quotient
-            var quotNum = parseInt(num1.innerHTML) * parseInt(den2.innerHTML);
-            var quotDen = parseInt(den1.innerHTML) * parseInt(num2.innerHTML);
+            var quotNum = parseInt(num1.value) * parseInt(den2.value);
+            var quotDen = parseInt(den1.value) * parseInt(num2.value);
             // Simplify the fraction if possible
             var gcd = getGCD(quotNum, quotDen);
             quotNum /= gcd;
